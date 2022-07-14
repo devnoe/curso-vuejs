@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VueJS - Eventos</title>
+</head>
+<body>
+
+  <div id="app"></div>
+
+  <script src="https://unpkg.com/vue@3"></script>
+  <script>
+    const vm = Vue.createApp({
+      data() {
+        return {
+          counter: 0,
+          evt: 'submit',
+        };
+      },
+      methods: {
+        /*
+        increment() {
+          this.counter++;
+        }
+        */
+        /* submitEventPrevent(event) {
+          event.preventDefault();
+          console.log(event);
+        } */
+        submit() {
+          this.counter++;
+        }
+      },
+      /*
+        Ejemplo de eventos
+        template: `<button v-on:keyup="increment">counter: {{ counter }}</button>`
+      */
+      template: `
+        <form v-on:[evt].prevent.stop="submit">
+          <button>counter: {{ counter }}</button>
+        </form>
+      `
+    }).mount('#app');
+  </script>
+</body>
+</html>
