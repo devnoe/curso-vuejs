@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VueJS - Eventos</title>
+  <title>Ejercicio Increment - Decrement</title>
 </head>
 <body>
+  <h1>Aplicando eventos con Vue 3</h1>
 
   <div id="app"></div>
 
@@ -15,32 +16,21 @@
     const vm = Vue.createApp({
       data() {
         return {
-          counter: 0,
-          evt: 'submit',
-        };
+          counter: 0
+        }
       },
       methods: {
-        /*
         increment() {
           this.counter++;
-        }
-        */
-        /* submitEventPrevent(event) {
-          event.preventDefault();
-          console.log(event);
-        } */
-        submit() {
-          this.counter++;
+        },
+        decrement() {
+          this.counter--;
         }
       },
-      /*
-        Ejemplo de eventos
-        template: `<button v-on:keyup="increment">counter: {{ counter }}</button>`
-      */
       template: `
-        <form v-on:[evt].prevent.stop="submit">
-          <button>counter: {{ counter }}</button>
-        </form>
+        <button v-on:click="increment">Incrementar</button>
+        <h3>{{ counter }}</h3>
+        <button @click="decrement">Decrementar</button>
       `
     }).mount('#app');
   </script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <title>VueJS</title>
+</head>
+<body>
+
+  <div id="app"></div>
+
+  <script src="https://unpkg.com/vue@3"></script>
+  <script>
+    const vm = Vue.createApp({
+      data() {
+        return {
+          counter: 0,
+          evt: 'mouseover'
+        };
+      },
+      methods: {
+        increment() {
+          this.counter++;
+        },
+        submit(event) {
+          console.log(event);
+        },
+        changeColor(event) {
+          const pTag = event.target;
+          if (this.evt === 'mouseover') {
+            pTag.style.color = 'tomato';
+            this.evt = 'mouseout';
+          } else {
+            pTag.style.color = 'black';
+            this.evt = 'mouseover';
+          }
+        }
+      },
+      template: `
+        <button v-on:click="increment">{{ counter }}</button>
+        <h1>Utilizando modificadores</h1>
+        <form @click.prevent="submit">
+          <button type="submit">Enviar</button>
+        </form>
+        <h2>Agregando eventos de manera dinámica</h2>
+        <h3 v-on:[evt]="changeColor">Evento dinamico</h3>
+      `
+    }).mount('#app');
+  </script>
+</body>
+</html>

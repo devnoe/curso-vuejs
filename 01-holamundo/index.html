@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
   <title>VueJS</title>
 </head>
 <body>
@@ -15,10 +17,16 @@
     const vm = Vue.createApp({
       data() {
         return {
-          texto: "<h1>Hello, Vue!</h1>"
+          text: "<h1>Hello, Vue!</h1>",
+          staticText: "Texto no modificable desde fuera"
         };
       },
-      template: `<div v-html="texto"></div>`  /* v-once v-text="texto" */
+      template: `
+        <div>{{ text }}</div>
+        <div v-text="text"></div>
+        <div v-html="text"></div>
+        <div v-once>{{ staticText }}</div>
+      `
     }).mount('#app');
   </script>
 </body>
