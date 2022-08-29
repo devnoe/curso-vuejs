@@ -7,18 +7,42 @@
     name="viewport"
     content="width=device-width, initial-scale=1.0">
   <title>VueJS</title>
+  <style>
+    code {
+      background-color: #dbe3f1;
+      padding: 2px;
+      border-radius: 3px;
+    }
+  </style>
 </head>
 <body>
 
-  <div id="app"></div>
+  <h3>Aplicación 1: Introducción a Vue</h3>
+  <p>
+    En este ejemplo vemos la creación de nuestra aplicación por medio de <code>Vue.createApp()</code>, al cual se le agrega como argumentos un objeto con el método <code>data()</code>, este método retorna las variables que podemos hacer uso en nuestro contenido HTML por medio de dobles llaves (<code>{{ }}</code>).
+  </p>
+  <p>
+    <code>Vue.createApp()</code> se monta en un contenedor del cual nosotros especificamos, en este caso: <code>#app1</code>
+  </p>
+  <div id="app1">{{ greet }}</div>
+  <hr />
+  <div id="app2"></div>
 
   <script src="https://unpkg.com/vue@3"></script>
   <script>
-    const vm = Vue.createApp({
+    const vm1 = Vue.createApp({
+      data() {
+        return {
+          greet: 'Bienvenido al maravilloso mundo de Vue',
+        }
+      }
+    }).mount('#app1');
+
+    const vm2 = Vue.createApp({
       data() {
         return {
           text: "<h1>Hello, Vue!</h1>",
-          staticText: "Texto no modificable desde fuera"
+          staticText: "Texto no modificable desde fuera por el uso de la directivo v-once"
         };
       },
       template: `
@@ -27,7 +51,7 @@
         <div v-html="text"></div>
         <div v-once>{{ staticText }}</div>
       `
-    }).mount('#app');
+    }).mount('#app2');
   </script>
 </body>
 </html>
