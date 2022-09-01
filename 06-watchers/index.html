@@ -17,12 +17,28 @@
     const vm = Vue.createApp({
       data() {
         return {
-          text: "Hola Vue!",
+          text: "Puerta esta cerrada",
+          isOpen: false,
         };
       },
+      // Se activan cuando la variable surge un cambio
       watch: {
+        text(newValue, oldValue) {
+          console.log(`Watcher activado > nuevo valor: ${ newValue }; valor anterior: ${ oldValue }`);
+        },
+        isOpen(value) {
+          this.text = value ? "Puerta esta abierta" : "Puerta esta cerrada";
+        }
       },
-      template: ``
+      computed: {
+        btnLabel() {
+          return this.isOpen ? "Cerrar" : "Abrir";
+        }
+      },
+      template: `
+        <h1>{{ text }}</h1>
+        <button @click="isOpen = !isOpen">{{ btnLabel }}</button>
+      `
     }).mount('#app');
   </script>
 </body>
